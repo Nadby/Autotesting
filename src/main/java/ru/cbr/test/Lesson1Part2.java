@@ -17,7 +17,7 @@ public class Lesson1Part2 {
             System.out.println("Введенная строка не может быть преобразована в число!");
             System.exit(1);
         }
-        System.out.println("Введенное число: " + getNumberSignDesc(d) + ", " + getEvenSignDesc(d));
+        System.out.println("Введенное число: " + getNumberSignDesc(d) + ", " + getNumberEvenDesc(d));
     }
 
     private static String getNumberSignDesc(double d) {
@@ -30,7 +30,7 @@ public class Lesson1Part2 {
         return desc;
     }
 
-    private static String getEvenSignDesc(double d) {
+    private static String getNumberEvenDesc(double d) {
         String desc;
         if (d%2 == 0) {
             desc = "четное";
