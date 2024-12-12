@@ -1,4 +1,4 @@
-package ru.cbr.test;
+package ru.cbr.test.lesson1;
 
 public class Lesson1Part3 {
     public static void main(String[] args) {

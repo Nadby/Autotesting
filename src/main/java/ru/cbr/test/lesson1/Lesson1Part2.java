@@ -1,4 +1,4 @@
-package ru.cbr.test;
+package ru.cbr.test.lesson1;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
