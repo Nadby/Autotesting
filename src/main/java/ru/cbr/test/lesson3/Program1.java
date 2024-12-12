@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class Program1 {
 
-    private static final int ARRAY_SIZE = 13;
+    private static final int ARRAY_SIZE = 100;
     private static final int MIN_RANDOM_INT = 1;
     private static final int MAX_RANDOM_INT = 10000;
 
@@ -17,10 +17,9 @@ public class Program1 {
         int[] intArray = new int[ARRAY_SIZE];
         int[] intArray2 = new int[ARRAY_SIZE];
         int[] intArray3 = new int[ARRAY_SIZE];
-        //fillRandomIntArray(intArray);
-        intArray = new int[] {
-                1,6,3,8,3,6,2,7,0,4,8,2,7
-        };
+
+        fillRandomIntArray(intArray);
+
         System.arraycopy(intArray, 0, intArray2, 0, intArray.length);
         System.arraycopy(intArray, 0, intArray3, 0, intArray.length);
 

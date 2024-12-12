@@ -15,9 +15,10 @@ public class SortHelper {
         int i;
         int n;
         int temp;
-        int moveCount = 0, loopCount = 0;
+        int moveCount = 0, loopCount = 0, m = 0;
 
-        for (n = array.length - 1; n >= 0; n--) {
+        n = array.length - 1;
+        while (n > 0) {
             for (i = 0; i < n; i++) {
                 loopCount++;
                 if (array[i] > array[i + 1]) {
@@ -25,8 +26,10 @@ public class SortHelper {
                     array[i] = array[i + 1];
                     array[i + 1] = temp;
                     moveCount++;
+                    m = i + 1;
                 }
             }
+            n = --m;
         }
         return new SortResult(System.nanoTime() - time, loopCount, moveCount);
     }
