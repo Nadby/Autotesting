@@ -2,10 +2,7 @@ package ru.cbr.test.lesson2.helpers;
 
 import ru.cbr.test.lesson2.exceptions.DrinkNotFoundException;
 import ru.cbr.test.lesson2.models.Drink;
-
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.Optional;
 
 public class DrinkHelper {
     private static Drink[] drinks = new Drink[3];

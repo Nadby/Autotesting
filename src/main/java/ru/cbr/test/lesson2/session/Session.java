@@ -1,9 +1,5 @@
 package ru.cbr.test.lesson2.session;
 
-import ru.cbr.test.lesson2.exceptions.DrinkNotFoundException;
-import ru.cbr.test.lesson2.helpers.DrinkHelper;
-import ru.cbr.test.lesson2.models.Drink;
-
 public class Session {
     private int drinkId;
     private int balance;

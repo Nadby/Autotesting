@@ -5,13 +5,10 @@ import ru.cbr.test.lesson2.helpers.DrinkHelper;
 import ru.cbr.test.lesson2.session.Session;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Program1 {
     private static Session session;
     private static SessionHelper sessionHelper;
-    private DrinkHelper drinkHelper;
     private static Scanner sc;
 
     public static void main(String[] args) {

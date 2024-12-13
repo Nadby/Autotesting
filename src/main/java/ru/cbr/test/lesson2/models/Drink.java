@@ -1,7 +1,5 @@
 package ru.cbr.test.lesson2.models;
 
-import java.math.BigInteger;
-
 public class Drink {
     private final int id;
     private final String name;
@@ -24,9 +22,4 @@ public class Drink {
     public int getPrice() {
         return price;
     }
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-
 }
