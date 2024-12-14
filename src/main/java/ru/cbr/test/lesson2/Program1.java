@@ -1,41 +1,45 @@
 package ru.cbr.test.lesson2;
 
+import ru.cbr.test.lesson2.exceptions.NotEnoughBalanceException;
 import ru.cbr.test.lesson2.helpers.SessionHelper;
 import ru.cbr.test.lesson2.helpers.DrinkHelper;
+import ru.cbr.test.lesson2.repositories.DrinkRepository;
+import ru.cbr.test.lesson2.services.SessionService;
 import ru.cbr.test.lesson2.session.Session;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Program1 {
+
+    private static Scanner sc;
     private static Session session;
     private static SessionHelper sessionHelper;
-    private static Scanner sc;
+    private static SessionService sessionService;
 
     public static void main(String[] args) {
         sc = new Scanner(System.in);
-        showWelcome();
+        showMenu();
+        selectDrink();
+        topUpBalance();
+        process();
         sc.close();
     }
 
-    private static void showWelcome() {
-        showMenu();
-        choiceDrink();
-        process();
-    }
-
     private static void process() {
-        if (checkBalance()) {
-            if (session.changeBalance(-1 * sessionHelper.getPriceOfSelectedDrink())) {
+        boolean processed;
+        try {
+            processed = sessionService.process();
+            if (processed) {
                 System.out.printf("ваш напиток %s готов!\n", sessionHelper.getNameOfSelectedDrink());
                 if (session.getBalance() > 0) {
                     System.out.printf("заберите сдачу %s руб.", session.getBalance());
                 }
-
             } else {
-                System.out.println("ошибка при оплате");
+                //транзакция откатывается, возврат средств
+                System.out.println("произошла ошибка");
             }
-        } else {
-            showBalance();
+        } catch (NotEnoughBalanceException e) {
+            sessionHelper.printBalance();
             System.out.printf("пополните баланс, не хватает %s руб.\n", sessionHelper.getPriceOfSelectedDrink() - session.getBalance());
             topUpBalance();
             process();
@@ -46,8 +50,8 @@ public class Program1 {
         System.out.println("введите сумму пополнения:");
         try {
             int sum = sc.nextInt();
-            if (sum > 0) {
-                session.changeBalance(sum);
+            if (validateSum(sum)) {
+                sessionService.topUpBalance(sum);
             }
         } catch (InputMismatchException e) {
             System.out.println("введенная строка не может быть преобразована в целое число!");
@@ -56,39 +60,34 @@ public class Program1 {
         }
     }
 
-    private static boolean checkBalance() {
-        return sessionHelper.checkBalance();
+    private static boolean validateSum(int sum) {
+        return sum > 0;
     }
 
-    private static void choiceDrink() {
+    private static void selectDrink() {
         System.out.println("выберите напиток из представленных в меню, введя соответствующмй номер:");
         try {
             int drinkId = sc.nextInt();
-            if (new DrinkHelper().validateDrinkById(drinkId)) {
+            if (DrinkHelper.validateDrinkById(drinkId)) {
                 System.out.println("отличный выбор!");
                 if (session == null) {
                     session = new Session(drinkId);
                     sessionHelper = new SessionHelper(session);
-                } else {
-                    session.setDrinkId(drinkId);
+                    sessionService = new SessionService(session, sessionHelper);
                 }
             } else {
+                System.out.println("выбран несуществующий номер напитка");
                 showMenu();
-                choiceDrink();
+                selectDrink();
             }
         } catch (InputMismatchException e) {
             System.out.println("введенная строка не может быть преобразована в целое число!");
             sc.next();
-            choiceDrink();
+            selectDrink();
         }
     }
 
-    private static void showBalance() {
-        sessionHelper.printBalance();
-    }
-
     private static void showMenu() {
-        DrinkHelper.printDrinks(DrinkHelper.getAllDrinks());
+        DrinkHelper.printDrinks(DrinkRepository.getAllDrinks());
     }
-
 }
