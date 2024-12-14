@@ -9,7 +9,6 @@ import ru.cbr.test.lesson2.session.Session;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// обратную связь оставлять в ветке for-pull-requests
 public class Program1 {
 
     private static Scanner sc;
