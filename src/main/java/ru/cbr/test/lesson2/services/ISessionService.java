@@ -15,4 +15,27 @@ public interface ISessionService {
      * @param sum сумма пополнения баланса
      */
     void topUpBalance(int sum);
+
+    /**
+     * Получение цены выбранного напитка
+     * @return цена, руб.
+     */
+    int getPriceOfSelectedDrink();
+
+    /**
+     * Получение наименования выбранного напитка
+     * @return наименование выбранного напитка
+     */
+    String getNameOfSelectedDrink();
+
+    /**
+     * Печать баланса
+     */
+    void printBalance();
+
+    /**
+     * @return текущий баланс сессии
+     */
+    int getBalance();
+
 }

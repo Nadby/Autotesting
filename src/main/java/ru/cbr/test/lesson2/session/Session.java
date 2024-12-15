@@ -29,14 +29,12 @@ public class Session {
         }
         return res;
     }
-
     /**
      * @return текущий баланс сессии
      */
     public int getBalance() {
         return balance;
     }
-
     /**
      * @return идентификатор текущего выбранного напитка
      */
