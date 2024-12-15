@@ -3,6 +3,7 @@ package ru.cbr.test.lesson2;
 import ru.cbr.test.lesson2.exceptions.NotEnoughBalanceException;
 import ru.cbr.test.lesson2.helpers.DrinkHelper;
 import ru.cbr.test.lesson2.repositories.DrinkRepository;
+import ru.cbr.test.lesson2.services.ISessionService;
 import ru.cbr.test.lesson2.services.SessionService;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 public class Program1 {
 
     private static Scanner sc;
-    private static SessionService sessionService;
+    private static ISessionService sessionService;
 
     public static void main(String[] args) {
         sc = new Scanner(System.in);
